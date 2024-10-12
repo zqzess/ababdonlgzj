@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": false, // js/ts 混用时设为false
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "lib": ["ESNext", "DOM"],
+    "noEmit": true,
+    "skipLibCheck": true, // 忽略所有声明的ts文件
+    "types": [
+      "vite/client",
+      "node",
+    ],
+  },
+  "include": [],
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
