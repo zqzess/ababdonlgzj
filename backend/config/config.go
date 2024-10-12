@@ -58,14 +58,22 @@ func (s *Config) GetConfig() {
 	logger.Console.Debug(s.Config.Welcome)
 }
 
-// GetPort 获取端口
-func (s *Config) GetPort() int {
+// GetBackPort 获取端口
+func (s *Config) GetBackPort() int {
 	if s.isFileConfig {
-		return s.Config.Port
+		return s.Config.BackPort
 	} else {
 		return 9091
 	}
+}
 
+// GetBackPort 获取端口
+func (s *Config) GetFrontPort() int {
+	if s.isFileConfig {
+		return s.Config.FrontPort
+	} else {
+		return 9091
+	}
 }
 
 func (s *Config) GetUploadSize() int64 {

@@ -3,7 +3,8 @@ package types
 type Conf struct {
 	Account        string `json:"account,omitempty"`
 	Password       string `json:"password,omitempty"`
-	Port           int    `json:"port"`
+	BackPort       int    `json:"backPort"`
+	FrontPort      int    `json:"frontPort"`
 	Welcome        string `json:"welcome"`
 	UploadSize     int64  `json:"uploadSize"`
 	Tmp            string `json:"tmp,omitempty"`

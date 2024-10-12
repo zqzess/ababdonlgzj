@@ -31,6 +31,15 @@ func main() {
 	// 自动删除
 	go autoRemove()
 
+	// 启动html服务器
+	go func() {
+		frontPort := s.GetFrontPort()
+		logger.Console.Info("html start on %d", frontPort)
+		if err := http.ListenAndServe(fmt.Sprintf(":%d", frontPort), nil); err != nil {
+			logger.Console.Error("Error starting server:", err)
+		}
+	}()
+
 	// 启动命令处理的 goroutine
 	wg.Add(1)
 	go console.GetInstance().CommandHandler(commands)
@@ -49,7 +58,10 @@ func main() {
 
 	http.HandleFunc("/export", handler.ExportCSVHandler)
 
-	port := s.GetPort()
+	fs := http.FileServer(http.Dir("./dist"))
+	http.Handle("/", fs)
+
+	port := s.GetBackPort()
 	server := &http.Server{
 		Addr:    fmt.Sprintf(":%d", port),
 		Handler: corsMiddleware(http.DefaultServeMux),
