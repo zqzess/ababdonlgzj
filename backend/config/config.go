@@ -67,7 +67,7 @@ func (s *Config) GetBackPort() int {
 	}
 }
 
-// GetBackPort 获取端口
+// GetFrontPort 获取端口
 func (s *Config) GetFrontPort() int {
 	if s.isFileConfig {
 		return s.Config.FrontPort
