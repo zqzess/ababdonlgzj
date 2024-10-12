@@ -8,10 +8,10 @@
 
 访问 `http://localhost:5175/#/upload`
 ## 自行编译启动
-### 前台 
+### 前台 frontend
 1. `npm install`
 2. `npm run dev`
-### 后台
+### 后台 backend
 参考 makefile 执行对应命令
 
 示例:`make -f ./Makefile -C ../abandonlgzj all`
