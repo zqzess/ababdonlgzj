@@ -7,9 +7,9 @@ $(OUTPUT_DIR):
 	mkdir -p $(OUTPUT_DIR)
 
 # 默认目标，执行全部构建
-all: build-macOS build-linux
+all: build-macOS-arm build-linux-amd build-linux-arm
 
-.PHONY: build-macOS build-linux clean
+.PHONY: build-macOS-arm build-linux-amd build-linux-arm clean
 
 # 构建 macOS 版本的程序
 build-macOS-arm: $(OUTPUT_DIR)
