@@ -4,7 +4,7 @@
 
 # 执行方法
 ## docker启动 （推荐）
-``docker run -d -it -p 5175:80 -p 9091:9091 zqzess/abandonlgzj:latest /bin/sh``
+``docker run -d -it --name lgzj -p 5175:80 -p 9091:9091 zqzess/abandonlgzj:latest /bin/sh``
 
 访问 `http://localhost:5175/#/upload`
 ## 自行编译启动
