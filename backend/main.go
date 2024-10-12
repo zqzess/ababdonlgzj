@@ -31,15 +31,6 @@ func main() {
 	// 自动删除
 	go autoRemove()
 
-	// 启动html服务器
-	go func() {
-		frontPort := s.GetFrontPort()
-		logger.Console.Info("html start on %d", frontPort)
-		if err := http.ListenAndServe(fmt.Sprintf(":%d", frontPort), nil); err != nil {
-			logger.Console.Error("Error starting server:", err)
-		}
-	}()
-
 	// 启动命令处理的 goroutine
 	wg.Add(1)
 	go console.GetInstance().CommandHandler(commands)
@@ -58,8 +49,24 @@ func main() {
 
 	http.HandleFunc("/export", handler.ExportCSVHandler)
 
-	fs := http.FileServer(http.Dir("./dist"))
+	// 启动html服务器
+	frontPort := s.GetFrontPort()
+	httpDir := s.GetHttpDir()
+	// 设置静态文件目录为 dist
+	fs := http.FileServer(http.Dir(httpDir))
 	http.Handle("/", fs)
+
+	// 自定义处理器以处理 Vue Router 的 history 模式
+	//http.HandleFunc("/404", func(w http.ResponseWriter, r *http.Request) {
+	//	http.ServeFile(w, r, "./dist/index.html")
+	//})
+
+	go func() {
+		logger.Console.Info("html start on %d", frontPort)
+		if err := http.ListenAndServe(fmt.Sprintf(":%d", frontPort), nil); err != nil {
+			logger.Console.Error("Error starting server:", err)
+		}
+	}()
 
 	port := s.GetBackPort()
 	server := &http.Server{

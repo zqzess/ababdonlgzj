@@ -76,6 +76,14 @@ func (s *Config) GetFrontPort() int {
 	}
 }
 
+func (s *Config) GetHttpDir() string {
+	if s.isFileConfig {
+		return s.Config.HttpDir
+	} else {
+		return "./dist"
+	}
+}
+
 func (s *Config) GetUploadSize() int64 {
 	if s.isFileConfig {
 		return s.Config.UploadSize

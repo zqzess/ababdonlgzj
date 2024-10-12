@@ -5,6 +5,7 @@ type Conf struct {
 	Password       string `json:"password,omitempty"`
 	BackPort       int    `json:"backPort"`
 	FrontPort      int    `json:"frontPort"`
+	HttpDir        string `json:"httpDir"`
 	Welcome        string `json:"welcome"`
 	UploadSize     int64  `json:"uploadSize"`
 	Tmp            string `json:"tmp,omitempty"`

@@ -1,6 +1,7 @@
 {
   "backPort": 9091,
   "frontPort": 5175,
+  "httpDir": "./dist",
   "welcome": "欢迎使用灵敢足迹备份工具",
   "uploadSize": 100,
   "tmp": "/Users/zqzess/Code/go/abandonlgzj/tmpFile",
