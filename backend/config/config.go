@@ -72,7 +72,7 @@ func (s *Config) GetFrontPort() int {
 	if s.isFileConfig {
 		return s.Config.FrontPort
 	} else {
-		return 9091
+		return 5175
 	}
 }
 
