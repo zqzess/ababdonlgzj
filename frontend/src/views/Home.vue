@@ -5,9 +5,9 @@ import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import L from 'leaflet';
 import 'leaflet.markercluster';
 import {onMounted, ref} from 'vue'
-import axios from "axios";
 import {ElNotification as nofity} from 'element-plus'
 import apiUrl from "@/config/config.ts";
+import apiClient from "@/axios";
 
 const checkLine = ref(false)
 let map = ref<L.Map | null>(null);
@@ -94,7 +94,7 @@ const initMap = async () => {
   };
 
 
-  const response = await axios.get(apiUrl + '/getData', config);
+  const response = await apiClient.get('/getData', config);
   if (!response?.data.success) {
     nofity.error({
       message: response?.data.msg,
@@ -213,7 +213,7 @@ const queryData = async () => {
       endTime: queryDate.value[1] // 添加 endTime 查询参数
     }
   };
-  const response = await axios.get(apiUrl + '/getData', config);
+  const response = await apiClient.get('/getData', config);
   if (!response?.data.success) {
     nofity.error({
       message: response?.data.msg,
@@ -258,7 +258,7 @@ const exportCSV = async () => {
       },
       // responseType: 'blob'
     };
-    const response = await axios.get(apiUrl + '/export', config);
+    const response = await apiClient.get('/export', config);
 
     // 检查响应的 Content-Type
     const contentType = response.headers['content-type'];

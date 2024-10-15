@@ -35,11 +35,12 @@ import {ResultRes} from '@/utils/beans.ts';
 import {ElNotification as nofity} from 'element-plus'
 import {useRouter} from "vue-router";
 import apiUrl from "@/config/config.ts";
+import {getApiBaseUrl} from "@/axios";
 
 const upload = ref<UploadInstance>()
 const $router = useRouter()
 
-const uploadUrl = apiUrl + '/upload'
+const uploadUrl = getApiBaseUrl(9091) + '/upload'
 
 const handleExceed: UploadProps['onExceed'] = (files) => {
   upload.value!.clearFiles()
